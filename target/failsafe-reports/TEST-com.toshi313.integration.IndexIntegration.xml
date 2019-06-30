@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-failsafe-plugin/xsd/failsafe-test-report-3.0.xsd" version="3.0" name="com.toshi313.integration.IndexIntegration" time="0.12" tests="1" errors="1" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-failsafe-plugin/xsd/failsafe-test-report-3.0.xsd" version="3.0" name="com.toshi313.integration.IndexIntegration" time="10.835" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -14,10 +14,11 @@
     <property name="user.timezone" value="Asia/Tokyo"/>
     <property name="os.name" value="Windows 10"/>
     <property name="java.vm.specification.version" value="12"/>
+    <property name="snapshop_save_path" value="C:\Users\Toshiyuki\maven_prj\mvn-web-app/src/test/evidence"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="JP"/>
     <property name="sun.boot.library.path" value="C:\Program Files\jdk-12\bin"/>
-    <property name="sun.java.command" value="C:\Users\Toshiyuki\AppData\Local\Temp\surefire1605107983464966054\surefirebooter8931969474437129231.jar C:\Users\Toshiyuki\AppData\Local\Temp\surefire1605107983464966054 2019-07-01T07-36-35_820-jvmRun1 surefire17262998783110668670tmp surefire_04936318287077297056tmp"/>
+    <property name="sun.java.command" value="C:\Users\Toshiyuki\AppData\Local\Temp\surefire13437836459823785515\surefirebooter7838885800615228076.jar C:\Users\Toshiyuki\AppData\Local\Temp\surefire13437836459823785515 2019-07-01T07-55-58_488-jvmRun1 surefire1433462814305293024tmp surefire_0362183355872032957tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Toshiyuki\maven_prj\mvn-web-app\target\test-classes;C:\Users\Toshiyuki\maven_prj\mvn-web-app\target\classes;C:\Users\Toshiyuki\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\Toshiyuki\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Toshiyuki\.m2\repository\javax\servlet\javax.servlet-api\4.0.1\javax.servlet-api-4.0.1.jar;C:\Users\Toshiyuki\.m2\repository\org\slf4j\slf4j-api\1.7.26\slf4j-api-1.7.26.jar;C:\Users\Toshiyuki\.m2\repository\ch\qos\logback\logback-classic\1.2.3\logback-classic-1.2.3.jar;C:\Users\Toshiyuki\.m2\repository\ch\qos\logback\logback-core\1.2.3\logback-core-1.2.3.jar;C:\Users\Toshiyuki\.m2\repository\org\seleniumhq\selenium\selenium-java\3.141.59\selenium-java-3.141.59.jar;C:\Users\Toshiyuki\.m2\repository\org\seleniumhq\selenium\selenium-api\3.141.59\selenium-api-3.141.59.jar;C:\Users\Toshiyuki\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\3.141.59\selenium-chrome-driver-3.141.59.jar;C:\Users\Toshiyuki\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\3.141.59\selenium-edge-driver-3.141.59.jar;C:\Users\Toshiyuki\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\3.141.59\selenium-firefox-driver-3.141.59.jar;C:\Users\Toshiyuki\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\3.141.59\selenium-ie-driver-3.141.59.jar;C:\Users\Toshiyuki\.m2\repository\org\seleniumhq\selenium\selenium-opera-driver\3.141.59\selenium-opera-driver-3.141.59.jar;C:\Users\Toshiyuki\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\3.141.59\selenium-remote-driver-3.141.59.jar;C:\Users\Toshiyuki\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\3.141.59\selenium-safari-driver-3.141.59.jar;C:\Users\Toshiyuki\.m2\repository\org\seleniumhq\selenium\selenium-support\3.141.59\selenium-support-3.141.59.jar;C:\Users\Toshiyuki\.m2\repository\net\bytebuddy\byte-buddy\1.8.15\byte-buddy-1.8.15.jar;C:\Users\Toshiyuki\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\Toshiyuki\.m2\repository\com\google\guava\guava\25.0-jre\guava-25.0-jre.jar;C:\Users\Toshiyuki\.m2\repository\com\google\code\findbugs\jsr305\1.3.9\jsr305-1.3.9.jar;C:\Users\Toshiyuki\.m2\repository\org\checkerframework\checker-compat-qual\2.0.0\checker-compat-qual-2.0.0.jar;C:\Users\Toshiyuki\.m2\repository\com\google\errorprone\error_prone_annotations\2.1.3\error_prone_annotations-2.1.3.jar;C:\Users\Toshiyuki\.m2\repository\com\google\j2objc\j2objc-annotations\1.1\j2objc-annotations-1.1.jar;C:\Users\Toshiyuki\.m2\repository\org\codehaus\mojo\animal-sniffer-annotations\1.14\animal-sniffer-annotations-1.14.jar;C:\Users\Toshiyuki\.m2\repository\com\squareup\okhttp3\okhttp\3.11.0\okhttp-3.11.0.jar;C:\Users\Toshiyuki\.m2\repository\com\squareup\okio\okio\1.14.0\okio-1.14.0.jar;C:\Users\Toshiyuki\.m2\repository\commons-io\commons-io\2.6\commons-io-2.6.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -33,7 +34,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\Toshiyuki\AppData\Local\Temp\surefire1605107983464966054\surefirebooter8931969474437129231.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Toshiyuki\AppData\Local\Temp\surefire13437836459823785515\surefirebooter7838885800615228076.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="12+33"/>
@@ -41,7 +42,7 @@
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
-    <property name="chrome_driver_path" value="C:\Users\Toshiyuki\maven_prj\mvn-web-app/src/resources/webdriver/chromedriver.exe"/>
+    <property name="chrome_driver_path" value="C:\Users\Toshiyuki\maven_prj\mvn-web-app/src/test/resources/webdriver/chromedriver.exe"/>
     <property name="file.encoding" value="MS932"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
     <property name="localRepository" value="C:\Users\Toshiyuki\.m2\repository"/>
@@ -60,9 +61,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="56.0"/>
   </properties>
-  <testcase name="index_jspが表示されること" classname="com.toshi313.integration.IndexIntegration" time="0.075">
-    <error message="The driver executable does not exist: C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\resources\webdriver\chromedriver.exe" type="java.lang.IllegalStateException">java.lang.IllegalStateException: The driver executable does not exist: C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\resources\webdriver\chromedriver.exe
-	at com.toshi313.integration.IndexIntegration.index_jspが表示されること(IndexIntegration.java:26)
-</error>
-  </testcase>
+  <testcase name="index_jspが表示されること" classname="com.toshi313.integration.IndexIntegration" time="10.783"/>
 </testsuite>

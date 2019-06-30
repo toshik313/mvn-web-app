@@ -1,11 +1,12 @@
 package com.toshi313.integration;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 import java.io.File;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.Test;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +19,7 @@ public class IndexIntegration {
     @Test
     public void index_jspが表示されること() throws Exception {
 
+        String snapshop_save_path = System.getProperty("snapshop_save_path");
         String chrome_driver_path = System.getProperty("chrome_driver_path");
         String url = System.getProperty("url");
 
@@ -28,10 +30,12 @@ public class IndexIntegration {
 
 
         wd.get(url);
-        File image_temp = ((TakesScreenshot)wd).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(image_temp, new File("C:/Users/Toshiyuki/maven_prj/mvn-web-app/src/test/evidence/" + Util.getMethodName() + ".png"));
-        wd.quit();
 
-        fail("テスト失敗");
+        File image_temp = ((TakesScreenshot)wd).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(image_temp, new File(snapshop_save_path + "/" + Util.getClassName() + "-" + Util.getMethodName() + ".png"));
+
+        assertThat(wd.getTitle(), is("index.jsp"));
+
+        wd.quit();
     }
 }

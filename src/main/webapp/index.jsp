@@ -1,4 +1,7 @@
 <html>
+    <head>
+        <title>index.jsp</title>
+    </head>
 <body>
 <h2>Hello Jetty!</h2>
 <h2>Hello Jetty!</h2>

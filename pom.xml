@@ -120,8 +120,9 @@
                   <include>**/*Integration.java</include>
                 </includes>
                 <systemPropertyVariables>
-                  <chrome_driver_path>${project.basedir}/src/resources/webdriver/chromedriver.exe</chrome_driver_path>
+                  <chrome_driver_path>${project.basedir}/src/test/resources/webdriver/chromedriver.exe</chrome_driver_path>
                   <url>http://localhost:${jetty.port}/</url>
+                  <snapshop_save_path>${project.basedir}/src/test/evidence</snapshop_save_path>
                 </systemPropertyVariables>
               </configuration>
             </execution>
