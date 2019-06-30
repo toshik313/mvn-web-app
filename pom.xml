@@ -15,7 +15,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.version>1.7</java.version>
+    <java.version>11</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <jetty.port>8081</jetty.port>
@@ -69,17 +69,18 @@
 
   <build>
     <finalName>${warfile.name}</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+
       <plugins>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
         </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.0.2</version>
         </plugin>
+
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.0</version>
@@ -88,60 +89,20 @@
             <target>${java.version}</target>
           </configuration>
         </plugin>
+
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
+          <version>3.0.0-M3</version>
+          <configuration>
+            <excludes>
+              <exclude>**/*Integration.java</exclude>
+            </excludes>
+          </configuration>
         </plugin>
 
         <plugin>
           <artifactId>maven-war-plugin</artifactId>
           <version>3.2.2</version>
-        </plugin>
-
-        <plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
-        </plugin>
-
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
-        </plugin>
-
-        <plugin>
-          <groupId>org.eclipse.jetty</groupId>
-          <artifactId>jetty-maven-plugin</artifactId>
-          <version>9.4.19.v20190610</version>
-            <configuration>
-              <httpConnector>
-                <port>${jetty.port}</port>
-              </httpConnector>
-          </configuration>
-          <executions>
-            <execution>
-              <id>start-jetty</id>
-              <phase>pre-integration-test</phase>
-              <goals>
-                <goal>run</goal>
-              </goals>
-              <configuration>
-                <war>${project.basedir}/target/${warfile.name}.war</war>
-                <scanIntervalSeconds>0</scanIntervalSeconds>
-                <daemon>true</daemon>
-              </configuration>
-            </execution>
-            <execution>
-              <id>stop-jetty</id>
-              <phase>post-integration-test</phase>
-              <goals>
-                <goal>stop</goal>
-              </goals>
-              <configuration>
-                <stopKey>stop</stopKey>
-                <stopPort>9999</stopPort>
-              </configuration>
-            </execution>
-          </executions>
         </plugin>
 
         <plugin>
@@ -172,7 +133,53 @@
           </executions>
         </plugin>
 
+        <plugin>
+          <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-maven-plugin</artifactId>
+          <version>9.4.12.RC2</version>
+            <configuration>
+              <httpConnector>
+                <port>${jetty.port}</port>
+              </httpConnector>
+          </configuration>
+          <executions>
+            <execution>
+              <id>start-jetty</id>
+              <phase>pre-integration-test</phase>
+              <goals>
+                <goal>start</goal>
+              </goals>
+              <configuration>
+                <war>${project.basedir}/target/${warfile.name}.war</war>
+                <scanIntervalSeconds>0</scanIntervalSeconds>
+                <daemon>true</daemon>
+              </configuration>
+            </execution>
+            <execution>
+              <id>stop-jetty</id>
+              <phase>post-integration-test</phase>
+              <goals>
+                <goal>stop</goal>
+              </goals>
+              <configuration>
+                <stopKey>stop</stopKey>
+                <stopPort>9999</stopPort>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.2</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+
       </plugins>
-    </pluginManagement>
+
   </build>
 </project>

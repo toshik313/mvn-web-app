@@ -11,6 +11,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.toshi313.common.Util;
 
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
+
 public class IndexIntegration {
 
     @Test
@@ -26,5 +29,7 @@ public class IndexIntegration {
         File image_temp = ((TakesScreenshot)wd).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(image_temp, new File("C:/Users/Toshiyuki/maven_prj/mvn-web-app/src/test/evidence/" + Util.getMethodName() + ".png"));
         wd.quit();
+
+        fail("テスト失敗");
     }
 }

@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.toshi313.integration.IndexIntegration
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 7.629 s <<< FAILURE! - in com.toshi313.integration.IndexIntegration
+index_jspが表示されること(com.toshi313.integration.IndexIntegration)  Time elapsed: 7.587 s  <<< FAILURE!
+java.lang.AssertionError: テスト失敗
+	at com.toshi313.integration.IndexIntegration.index_jspが表示されること(IndexIntegration.java:33)
+
