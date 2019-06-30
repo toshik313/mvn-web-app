@@ -1,0 +1,100 @@
+あいうえお
+
+cd maven_prj
+
+mvn archetype:generate^
+ -DarchetypeGroupId=org.apache.maven.archetypes^
+ -DarchetypeArtifactId=maven-archetype-webapp
+
+Define value for property 'groupId': com.toshi313
+Define value for property 'artifactId': mvn-web-app
+Define value for property 'version' 1.0-SNAPSHOT: (default)
+Define value for property 'package' com.toshi313: (default)
+
+mkdir mvn-web-app\src\test
+mkdir mvn-web-app\src\test\java
+mkdir mvn-web-app\src\main\java
+mkdir mvn-web-app\src\main\resources
+
+cd mvn-web-app
+
+vi pom.xml
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>11</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.26</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+    <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.2.3</version>
+    </dependency>
+
+  </dependencies>
+  <build>
+    <finalName>mvn-web-app##${project.version}</finalName>
+
+
+<plugin>
+  <groupId>org.eclipse.jetty</groupId>
+  <artifactId>jetty-maven-plugin</artifactId>
+  <version>9.4.19.v20190610</version>
+</plugin>
+
+  </build>
+
+■ jettyプラグインを使った動作確認
+mvn jetty:run
+ブラウザで、「http://localhost:8080/」
+
+■ warファイルの作成とlocal tomcatへの手動デプロイ
+mvn package
+※ 作成されたwarファイルをtomcatの管理画面でデプロイすれば動く
+
+■ eclipseへのインポート
+ファイル→インポート→Maven→既存 Mavenプロジェクト
+次へでプロジェクトのrootを選択
+ワーキングセットへの追加をチェック
+→完了
+
+
+■ gitへの登録
+cd /c/Users/Toshiyuki/maven_prj/mvn-web-app
+git init
+git add --all
+git commit -m "最初のコミット"
+
+git remote add origin git@github.com:toshik313/mvn-web-app.git
+git push -u origin master
+
+■ git add前の変更を元に戻す
+# ブランチ全体の場合
+git checkout .
+# 特定ファイルの場合
+git checkout "ファイル名"
