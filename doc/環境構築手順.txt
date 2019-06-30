@@ -1,4 +1,4 @@
-あいうえお
+
 
 cd maven_prj
 
