@@ -11,6 +11,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 import com.toshi313.common.Util;
 
@@ -20,14 +21,15 @@ public class IndexIntegration {
     public void index_jspが表示されること() throws Exception {
 
         String snapshop_save_path = System.getProperty("snapshop_save_path");
-        String chrome_driver_path = System.getProperty("chrome_driver_path");
+//        String chrome_driver_path = System.getProperty("chrome_driver_path");
+        String phantomjs_binary_path = System.getProperty("phantomjs_binary_path");
         String url = System.getProperty("url");
 
-        System.setProperty("webdriver.chrome.driver", chrome_driver_path);
+//        System.setProperty("webdriver.chrome.driver", chrome_driver_path);
+        System.setProperty("phantomjs.binary.path", phantomjs_binary_path);
 
-        WebDriver wd = new ChromeDriver();
-//        wd.get("http://localhost:8080/mvn-web-app/");
-
+//        WebDriver wd = new ChromeDriver();
+        WebDriver wd = new PhantomJSDriver();
 
         wd.get(url);
 

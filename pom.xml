@@ -51,6 +51,13 @@
         <version>1.2.3</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/com.codeborne/phantomjsdriver -->
+    <dependency>
+        <groupId>com.codeborne</groupId>
+        <artifactId>phantomjsdriver</artifactId>
+        <version>1.4.4</version>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
@@ -121,6 +128,7 @@
                 </includes>
                 <systemPropertyVariables>
                   <chrome_driver_path>${project.basedir}/src/test/resources/webdriver/chromedriver.exe</chrome_driver_path>
+                  <phantomjs_binary_path>${project.basedir}/src/test/resources/webdriver/phantomjs.exe</phantomjs_binary_path>
                   <url>http://localhost:${jetty.port}/</url>
                   <snapshop_save_path>${project.basedir}/src/test/evidence</snapshop_save_path>
                 </systemPropertyVariables>
