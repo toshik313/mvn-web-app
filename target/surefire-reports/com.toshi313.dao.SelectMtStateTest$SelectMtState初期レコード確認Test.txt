@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.toshi313.dao.SelectMtStateTest$SelectMtState初期レコード確認Test
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.592 s - in com.toshi313.dao.SelectMtStateTest$SelectMtState初期レコード確認Test
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.6 s - in com.toshi313.dao.SelectMtStateTest$SelectMtState初期レコード確認Test

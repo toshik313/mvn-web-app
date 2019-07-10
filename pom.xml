@@ -193,7 +193,7 @@
                 <systemPropertyVariables>
                   <chrome_driver_path>${project.basedir}/src/test/resources/webdriver/chromedriver.exe</chrome_driver_path>
                   <phantomjs_binary_path>${project.basedir}/src/test/resources/webdriver/phantomjs.exe</phantomjs_binary_path>
-                  <url>http://localhost:${jetty.port}/</url>
+                  <url>http://localhost:${jetty.port}/mvn-web-app</url>
                   <snapshop_save_path>${project.basedir}/src/test/evidence</snapshop_save_path>
                 </systemPropertyVariables>
               </configuration>

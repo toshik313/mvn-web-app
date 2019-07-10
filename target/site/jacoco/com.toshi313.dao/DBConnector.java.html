@@ -29,7 +29,7 @@ import com.toshi313.common.Util;
 
 <span class="fc bfc" id="L30" title="All 4 branches covered.">            if(jndi_driver == null || jndi_datasource == null) {</span>
 <span class="fc" id="L31">                throw new IllegalStateException(&quot;jndi_driverまたはjndi_datasourceの取得に失敗しました。&quot;</span>
-                        + &quot;jndi_driver=[&quot; + jndi_driver + &quot;], jndi_datasource=[&quot; + jndi_datasource + &quot;]&quot;);
+<span class="fc" id="L32">                        + &quot;jndi_driver=[&quot; + jndi_driver + &quot;], jndi_datasource=[&quot; + jndi_datasource + &quot;]&quot;);</span>
             }
 
 <span class="fc" id="L35">            Class.forName(jndi_driver);</span>
@@ -39,7 +39,7 @@ import com.toshi313.common.Util;
 <span class="fc" id="L39">                InitialContext cxt = new InitialContext();</span>
 <span class="nc" id="L40">                DataSource ds = (DataSource)cxt.lookup(jndi_datasource);</span>
 <span class="nc" id="L41">                conn = ds.getConnection();</span>
-<span class="fc" id="L42">            } catch(Exception e) {</span>
+<span class="pc" id="L42">            } catch(Exception e) {</span>
 
 <span class="fc" id="L44">                logger.error(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;:JNDIによる接続に失敗したため、JDBCによる接続を試みます。&quot;, e);</span>
 
@@ -49,17 +49,17 @@ import com.toshi313.common.Util;
 
 <span class="fc bfc" id="L50" title="All 6 branches covered.">                if(db_url == null || db_user == null || db_password == null) {</span>
 <span class="fc" id="L51">                    throw new IllegalStateException(&quot;db_urlまたはdb_userまたはdb_passwordの取得に失敗しました。&quot;</span>
-                            + &quot;db_url=[&quot; + db_url + &quot;], db_user=[&quot; + db_user + &quot;], db_password=[非公開]&quot;);
+<span class="fc" id="L52">                            + &quot;db_url=[&quot; + db_url + &quot;], db_user=[&quot; + db_user + &quot;], db_password=[非公開]&quot;);</span>
                 }
 
 <span class="fc" id="L55">                conn = DriverManager.getConnection(db_url, db_user, db_password);</span>
-<span class="nc" id="L56">            }</span>
+            }
 
 <span class="fc" id="L58">            conn.setAutoCommit(false);</span>
 
 <span class="fc" id="L60">        } catch (Exception e) {</span>
 <span class="fc" id="L61">            logger.error(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;に失敗しました。&quot; + e.getMessage(), e);</span>
-<span class="fc" id="L62">        }</span>
+        }
 
 <span class="fc" id="L64">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;:END&quot;);</span>
 
@@ -77,7 +77,7 @@ import com.toshi313.common.Util;
 <span class="fc" id="L77">            logger.info(Util.getClassName() + &quot;.&quot; + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;に成功しました。&quot;);</span>
 <span class="fc" id="L78">        } catch (Exception e) {</span>
 <span class="fc" id="L79">            logger.error(Util.getClassName() + &quot;.&quot; + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;に失敗しました。&quot; + e.getMessage(), e);</span>
-<span class="fc" id="L80">        }</span>
+        }
 <span class="fc" id="L81">        logger.info(Util.getClassName() + &quot;.&quot; + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;:END&quot;);</span>
 
 <span class="fc" id="L83">        return;</span>

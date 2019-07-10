@@ -8,9 +8,10 @@
 
 </head>
 <body>
+<h1>目次画面</h1>
 
 <form action="/mvn-web-app/ShowStateList" method="post">
-  <input type="submit" value="表示">
+  <input id="btn_view" type="submit" value="表示">
 </form>
 
 </body>

@@ -24,13 +24,13 @@ import com.toshi313.common.Util;
             + &quot; order by a.state_code&quot;;
 
 <span class="fc" id="L26">    public static final String[] COL_NAMES = {</span>
-            &quot;state_code&quot;,
-            &quot;state_name&quot;,
-            &quot;update_datetime&quot;};
+<span class="fc" id="L27">            &quot;state_code&quot;,</span>
+<span class="fc" id="L28">            &quot;state_name&quot;,</span>
+<span class="fc" id="L29">            &quot;update_datetime&quot;};</span>
 
     public static final int COL_INDEX_STATE_CODE = 0;
     public static final int COL_INDEX_STATE_NAME = 1;
-    public static final int COL_INDEX_UPDATE_DATETIME = 2;
+<span class="fc" id="L33">    public static final int COL_INDEX_UPDATE_DATETIME = 2;</span>
 
     public ArrayList&lt;HashMap&lt;String, String&gt;&gt; select(Connection conn) {
 
@@ -59,11 +59,11 @@ import com.toshi313.common.Util;
 <span class="fc" id="L59">                    map.put(colname, val);</span>
                 }
 <span class="fc" id="L61">                list.add(map);</span>
-<span class="fc" id="L62">            }</span>
+            }
 
 <span class="fc" id="L64">            logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;に成功しました。&quot;);</span>
 
-<span class="nc" id="L66">        } catch(Exception e) {</span>
+<span class="pc" id="L66">        } catch(Exception e) {</span>
 
 <span class="nc" id="L68">            list = null;</span>
 <span class="nc" id="L69">            logger.error(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;に失敗しました。&quot;, e);</span>
@@ -71,9 +71,9 @@ import com.toshi313.common.Util;
 <span class="pc bpc" id="L71" title="1 of 2 branches missed.">            if(stmt != null) {</span>
                 try {
 <span class="fc" id="L73">                    stmt.close();</span>
-<span class="nc" id="L74">                } catch (SQLException e) {</span>
+<span class="pc" id="L74">                } catch (SQLException e) {</span>
 <span class="nc" id="L75">                    logger.error(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;で、Statementのcloseに失敗しました。&quot;, e);</span>
-<span class="fc" id="L76">                }</span>
+                }
             }
         }
 <span class="fc" id="L79">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;:END&quot;);</span>

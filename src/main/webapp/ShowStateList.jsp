@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>目次画面</title>
+<title>都道府県一覧画面</title>
 
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.HashMap" %>
@@ -13,8 +13,8 @@
 %>
 </head>
 <body>
+<h1>都道府県一覧画面</h1>
 
-<h1>都道府県一覧</h1>
 <%  if(mt_state_list == null) { %>
   <p>都道府県一覧は登録されていません。</p>
 <%  } else { %>
@@ -38,10 +38,6 @@
 <%      } %>
   </table>
 <%  } %>
-
-
-
-
 
 </body>
 </html>
