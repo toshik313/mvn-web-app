@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- integration -->
+<Context>
+  <Resource
+    name="jdbc/postgres"
+    auth="Container"
+    type="javax.sql.DataSource"
+    driverClassName="org.postgresql.Driver"
+    url="jdbc:postgresql://localhost:5432/db_mvn_web_app"
+    username="u_mvn_web_app"
+    password="313toshiyuki"
+    maxTotal="20"
+    maxIdle="10"
+    maxWaitMillis="-1"/>
+</Context>

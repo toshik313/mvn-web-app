@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_3.dtd">
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+
+    <New id="postgres" class="org.eclipse.jetty.plus.jndi.Resource">
+       <Arg>jdbc/postgres</Arg>
+       <Arg>
+          <New class="org.postgresql.ds.PGSimpleDataSource">
+             <Set name="User">u_mvn_web_app</Set>
+             <Set name="Password">313toshiyuki</Set>
+             <Set name="DatabaseName">db_mvn_web_app</Set>
+             <Set name="ServerName">localhost</Set>
+             <Set name="PortNumber">5432</Set>
+          </New>
+       </Arg>
+    </New>
+</Configure>

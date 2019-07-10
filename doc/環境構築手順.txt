@@ -98,3 +98,35 @@ git push -u origin master
 git checkout .
 # 特定ファイルの場合
 git checkout "ファイル名"
+
+■ maven構成をeclipseで動かした際、ResourceBundleのgetBundleで、
+　　prj_root/src/main/resources以下のプロパティファイルが参照できなかった
+　→　src/main/resourcesディレクトリがclasspathから除外されているのが原因
+　eclipseビルドパスの設定画面のソースタブで、src/main/resourcesの除外が「*.*」となっている
+　これを除去し、除外が「(なし)」となるようにすると、classpathに含まれ、解決する
+　（参考：https://teratail.com/questions/122489）
+
+■ postgresqlのjdbc
+　jdbc接続の時もdatasource接続の時も、Class.forName("org.postgresql.Driver");
+　をする必要がある
+
+　datasourceの時は、src/main/webapp/META-INF/contect.xmlを用意し以下を記載する
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+  <Resource
+    name="jdbc/postgres"
+    auth="Container"
+    type="javax.sql.DataSource"
+    driverClassName="org.postgresql.Driver"
+    url="jdbc:postgresql://localhost:5432/db_mvn_web_app"
+    username="u_mvn_web_app"
+    password="***********"
+    maxTotal="20"
+    maxIdle="10"
+    maxWaitMillis="-1"/>
+</Context>
+---
+
+
+

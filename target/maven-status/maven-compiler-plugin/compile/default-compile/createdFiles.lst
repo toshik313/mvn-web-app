@@ -1,2 +1,6 @@
+com\toshi313\common\PropertyInfo.class
+com\toshi313\servlet\Initializer.class
+com\toshi313\dao\SelectMtState.class
+com\toshi313\servlet\ShowStateList.class
 com\toshi313\common\Util.class
-com\toshi313\servlet\HelloServlet.class
+com\toshi313\dao\DBConnector.class

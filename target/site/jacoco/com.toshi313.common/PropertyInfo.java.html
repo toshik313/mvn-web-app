@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PropertyInfo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mvn-web-app Maven Webapp</a> &gt; <a href="index.source.html" class="el_package">com.toshi313.common</a> &gt; <span class="el_source">PropertyInfo.java</span></div><h1>PropertyInfo.java</h1><pre class="source lang-java linenums">package com.toshi313.common;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.ResourceBundle;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+public class PropertyInfo {
+
+<span class="fc" id="L13">    private static Logger logger = LoggerFactory.getLogger(PropertyInfo.class);</span>
+
+    private static final String PROP_FNAME = &quot;mvn-web-app&quot;;
+
+
+    public static final String JNDI_DRIVER_KEY = &quot;jndi_driver&quot;;
+    public static final String JNDI_DATASOURCE_KEY = &quot;jndi_datasource&quot;;
+    public static final String DB_URL = &quot;db_url&quot;;
+    public static final String DB_USER = &quot;db_user&quot;;
+    public static final String DB_PASSWORD = &quot;db_password&quot;;
+
+
+<span class="fc" id="L25">    private static PropertyInfo PROP_DEF = null;</span>
+<span class="fc" id="L26">    protected static HashMap&lt;String, String&gt; PROP_MAP = new HashMap&lt;String, String&gt;();</span>
+
+<span class="fc" id="L28">    protected PropertyInfo() {</span>
+
+<span class="fc" id="L30">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:START&quot;);</span>
+
+<span class="fc" id="L32">        ResourceBundle bundle = ResourceBundle.getBundle(PROP_FNAME);</span>
+
+<span class="fc" id="L34">        Collections.list(bundle.getKeys()).forEach(key -&gt; {</span>
+
+<span class="fc" id="L36">            String value = bundle.getString(key);</span>
+<span class="fc" id="L37">            PROP_MAP.put(key, value);</span>
+<span class="fc" id="L38">            logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:[&quot; + bundle.getBaseBundleName() + &quot;]から、key=[&quot; + key + &quot;], value=[&quot; + value + &quot;]を取得しました。&quot;);</span>
+<span class="fc" id="L39">        });</span>
+
+<span class="fc" id="L41">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:END&quot;);</span>
+<span class="fc" id="L42">    }</span>
+
+
+
+    public static PropertyInfo getInstance() {
+
+<span class="fc" id="L48">        final String METHOD_OVERVIEW = &quot;インスタンス生成処理&quot;;</span>
+<span class="fc" id="L49">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;:START&quot;);</span>
+
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if(PROP_DEF == null) {</span>
+<span class="fc" id="L52">            PROP_DEF = new PropertyInfo();</span>
+<span class="fc" id="L53">            logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;:PROP_DEFのinstanceを生成しました。&quot;);</span>
+        } else {
+<span class="fc" id="L55">            logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;:PROP_DEFのinstanceは生成済みです。&quot;);</span>
+        }
+
+<span class="fc" id="L58">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;:END&quot;);</span>
+<span class="fc" id="L59">        return PROP_DEF;</span>
+    }
+
+
+
+    public String getValue(String key) {
+
+<span class="fc" id="L66">        final String METHOD_OVERVIEW = &quot;値返却処理&quot;;</span>
+<span class="fc" id="L67">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;:START&quot;);</span>
+
+<span class="fc" id="L69">        String value = &quot;&quot;;</span>
+
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">        if(PROP_MAP.containsKey(key)) {</span>
+<span class="fc" id="L72">            value = PROP_MAP.get(key);</span>
+<span class="fc" id="L73">            logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;:key=[&quot; + key + &quot;], value=[&quot; + value + &quot;]&quot;);</span>
+        } else {
+<span class="nc" id="L75">            logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;:mvn-web-appに[&quot; + key + &quot;]は存在しません。&quot;);</span>
+        }
+
+<span class="fc" id="L78">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;:END&quot;);</span>
+<span class="fc" id="L79">        return value;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
