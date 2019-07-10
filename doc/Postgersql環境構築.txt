@@ -1,0 +1,122 @@
+
+
+# DB一覧確認
+psql -l -U postgres
+
+# console login
+psql -U postgres
+
+# ログイン後、DB一覧
+\l
+select * from pg_database;
+
+# スキーマ一覧
+\dn
+select * from pg_namaspace;
+
+テーブル一覧
+\dt
+select * from pg_tables;
+
+# DB作成
+create database db_mvn_web_app;
+
+# ユーザー作成
+create role u_mvn_web_app with login password '313toshiyuki';
+
+# ロール付与
+GRANT ALL ON DATABASE db_mvn_web_app TO u_mvn_web_app;
+
+# DB接続
+psql -U u_mvn_web_app -d db_mvn_web_app
+
+# スキーマ作成
+create schema sc_mvn_web_app;
+
+# schema一覧
+\dn
+
+# 現在のschema確認
+select current_schema;
+
+# schema切り替え
+set search_path = sc_mvn_web_app;
+
+# テーブル作成
+create table if not exists sc_mvn_web_app.tb_mytable (
+    id serial not null primary key,
+    name varchar not null,
+    update_datetime timestamp not null default current_timestamp
+);
+
+# 項目名確認
+\d tb_mytable;
+
+# index作成
+create index on sc_mvn_web_app.tb_mytable(name);
+create index on sc_mvn_web_app.tb_mytable(update_datetime);
+
+# index一覧の確認
+\di
+
+# レコード追加
+insert into tb_mytable name values ('あいうえお');
+
+# 都道府県マスタ作成
+create table if not exists sc_mvn_web_app.mt_state (
+    state_code char(2) not null primary key,
+    state_name varchar not null,
+    update_datetime timestamp not null default current_timestamp
+);
+create index on sc_mvn_web_app.mt_state(name);
+create index on sc_mvn_web_app.mt_state(update_datetime);
+
+\d mt_state;
+
+insert into mt_state (state_code, state_name) values ('01', '北海道');
+insert into mt_state (state_code, state_name) values ('02', '青森県');
+insert into mt_state (state_code, state_name) values ('03', '岩手県');
+insert into mt_state (state_code, state_name) values ('04', '宮城県');
+insert into mt_state (state_code, state_name) values ('05', '秋田県');
+insert into mt_state (state_code, state_name) values ('06', '山形県');
+insert into mt_state (state_code, state_name) values ('07', '福島県');
+insert into mt_state (state_code, state_name) values ('08', '茨城県');
+insert into mt_state (state_code, state_name) values ('09', '栃木県');
+insert into mt_state (state_code, state_name) values ('10', '群馬県');
+insert into mt_state (state_code, state_name) values ('11', '埼玉県');
+insert into mt_state (state_code, state_name) values ('12', '千葉県');
+insert into mt_state (state_code, state_name) values ('13', '東京都');
+insert into mt_state (state_code, state_name) values ('14', '神奈川県');
+insert into mt_state (state_code, state_name) values ('15', '新潟県');
+insert into mt_state (state_code, state_name) values ('16', '富山県');
+insert into mt_state (state_code, state_name) values ('17', '石川県');
+insert into mt_state (state_code, state_name) values ('18', '福井県');
+insert into mt_state (state_code, state_name) values ('19', '山梨県');
+insert into mt_state (state_code, state_name) values ('20', '長野県');
+insert into mt_state (state_code, state_name) values ('21', '岐阜県');
+insert into mt_state (state_code, state_name) values ('22', '静岡県');
+insert into mt_state (state_code, state_name) values ('23', '愛知県');
+insert into mt_state (state_code, state_name) values ('24', '三重県');
+insert into mt_state (state_code, state_name) values ('25', '滋賀県');
+insert into mt_state (state_code, state_name) values ('26', '京都府');
+insert into mt_state (state_code, state_name) values ('27', '大阪府');
+insert into mt_state (state_code, state_name) values ('28', '兵庫県');
+insert into mt_state (state_code, state_name) values ('29', '奈良県');
+insert into mt_state (state_code, state_name) values ('30', '和歌山県');
+insert into mt_state (state_code, state_name) values ('31', '鳥取県');
+insert into mt_state (state_code, state_name) values ('32', '島根県');
+insert into mt_state (state_code, state_name) values ('33', '岡山県');
+insert into mt_state (state_code, state_name) values ('34', '広島県');
+insert into mt_state (state_code, state_name) values ('35', '山口県');
+insert into mt_state (state_code, state_name) values ('36', '徳島県');
+insert into mt_state (state_code, state_name) values ('37', '香川県');
+insert into mt_state (state_code, state_name) values ('38', '愛媛県');
+insert into mt_state (state_code, state_name) values ('39', '高知県');
+insert into mt_state (state_code, state_name) values ('40', '福岡県');
+insert into mt_state (state_code, state_name) values ('41', '佐賀県');
+insert into mt_state (state_code, state_name) values ('42', '長崎県');
+insert into mt_state (state_code, state_name) values ('43', '熊本県');
+insert into mt_state (state_code, state_name) values ('44', '大分県');
+insert into mt_state (state_code, state_name) values ('45', '宮崎県');
+insert into mt_state (state_code, state_name) values ('46', '鹿児島県');
+insert into mt_state (state_code, state_name) values ('47', '沖縄県');

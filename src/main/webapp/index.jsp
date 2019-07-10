@@ -1,95 +1,17 @@
-<html>
-    <head>
-        <title>index.jsp</title>
-    </head>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>目次画面</title>
+
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+</head>
 <body>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
-<h2>Hello Jetty!</h2>
+
+<form action="/mvn-web-app/ShowStateList" method="post">
+  <input type="submit" value="表示">
+</form>
+
 </body>
 </html>

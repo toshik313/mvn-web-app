@@ -27,8 +27,6 @@ public class IndexIntegration {
     @Before
     public void setUp() {
 
-
-
         this.snapshop_save_path = System.getProperty("snapshop_save_path");
         this.url_root = System.getProperty("url");
 
@@ -47,7 +45,7 @@ public class IndexIntegration {
         this.phantom_wd.get(this.url_root);
 
         File image_temp = ((TakesScreenshot)this.phantom_wd).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(image_temp, new File(this.snapshop_save_path + "/" + Util.getClassName() + "-" + Util.getMethodName() + ".png"));
+        FileUtils.copyFile(image_temp, new File(this.snapshop_save_path + "/" + Util.getClassName() + Util.CM_SEP + Util.getMethodName() + ".png"));
 
         assertThat(this.phantom_wd.getTitle(), is("index.jsp"));
     }
@@ -58,7 +56,7 @@ public class IndexIntegration {
         this.chrome_wd.get(this.url_root);
 
         File image_temp = ((TakesScreenshot)this.chrome_wd).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(image_temp, new File(this.snapshop_save_path + "/" + Util.getClassName() + "-" + Util.getMethodName() + ".png"));
+        FileUtils.copyFile(image_temp, new File(this.snapshop_save_path + "/" + Util.getClassName() + Util.CM_SEP + Util.getMethodName() + ".png"));
 
         assertThat(this.chrome_wd.getTitle(), is("index.jsp"));
     }

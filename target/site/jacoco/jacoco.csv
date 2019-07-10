@@ -1,0 +1,7 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+mvn-web-app Maven Webapp,com.toshi313.servlet,Initializer,33,0,0,0,10,0,4,0,4,0
+mvn-web-app Maven Webapp,com.toshi313.servlet,ShowStateList,0,122,0,4,0,29,0,4,0,2
+mvn-web-app Maven Webapp,com.toshi313.common,PropertyInfo,6,115,1,3,1,29,1,6,0,5
+mvn-web-app Maven Webapp,com.toshi313.common,Util,3,13,0,0,1,2,1,2,1,2
+mvn-web-app Maven Webapp,com.toshi313.dao,SelectMtState,20,108,2,6,6,24,2,5,0,3
+mvn-web-app Maven Webapp,com.toshi313.dao,DBConnector,9,137,0,10,3,34,0,8,0,3

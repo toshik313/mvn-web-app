@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE logback>
+<!-- local file -->
 <configuration>
 
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -18,12 +19,14 @@
       <maxHistory>7</maxHistory>
     </rollingPolicy>
     <encoder>
+        <charset>UTF-8</charset>
         <pattern>%d{yyyy-MM-dd'T'HH:mm:ss'Z'} - %m%n</pattern>
     </encoder>
   </appender>
 
 
   <root level="DEBUG">
+    <appender-ref ref="STDOUT" />
     <appender-ref ref="FILE" />
   </root>
 
