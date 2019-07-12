@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BugCollection version='3.1.12' threshold='medium' effort='default'><Error></Error><Project><SrcDir>C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\main\java</SrcDir><SrcDir>C:\Users\Toshiyuki\maven_prj\mvn-web-app\target\generated-sources\annotations</SrcDir><SrcDir>C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\test\java</SrcDir><SrcDir>C:\Users\Toshiyuki\maven_prj\mvn-web-app\target\generated-test-sources\test-annotations</SrcDir></Project></BugCollection>

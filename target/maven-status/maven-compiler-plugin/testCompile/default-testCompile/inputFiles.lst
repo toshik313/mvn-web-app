@@ -1,11 +1,11 @@
-C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\test\java\com\toshi313\dao\DaoUTAllTests.java
+C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\test\java\com\toshi313\dao\DaoUtAllTests.java
 C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\test\java\com\toshi313\common\UtilTest.java
 C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\test\java\com\toshi313\integration\IndexIntegration.java
 C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\test\java\com\toshi313\common\PropertyInfoTest.java
-C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\test\java\com\toshi313\dao\DBConnectorForUT.java
+C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\test\java\com\toshi313\dao\DbConnectorForUt.java
 C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\test\java\com\toshi313\dao\SelectMtStateTest.java
-C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\test\java\com\toshi313\UTAllTests.java
-C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\test\java\com\toshi313\common\CommonUTAllTests.java
-C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\test\java\com\toshi313\dao\DBConnectorTest.java
+C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\test\java\com\toshi313\UtAllTests.java
+C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\test\java\com\toshi313\common\CommonUtAllTests.java
+C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\test\java\com\toshi313\dao\DbConnectorTest.java
 C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\test\java\com\toshi313\servlet\ShowStateListTest.java
-C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\test\java\com\toshi313\servlet\ServletUTAllTests.java
+C:\Users\Toshiyuki\maven_prj\mvn-web-app\src\test\java\com\toshi313\servlet\ServletUtAllTests.java

@@ -285,6 +285,66 @@
           </executions>
         </plugin>
 
+
+
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-checkstyle-plugin</artifactId>
+  <version>3.0.0</version>
+  <dependencies>
+   <dependency>
+     <groupId>com.puppycrawl.tools</groupId>
+     <artifactId>checkstyle</artifactId>
+     <version>8.22</version>
+   </dependency>
+ </dependencies>
+ <configuration>
+   <configLocation>/my_google_checks.xml</configLocation>
+   <failsOnError>true</failsOnError>
+   <failOnViolation>true</failOnViolation>
+   <violationSeverity>error</violationSeverity>
+   <consoleOutput>true</consoleOutput>
+ </configuration>
+ <executions>
+   <execution>
+     <id>checkstyle</id>
+     <phase>test</phase>
+       <goals>
+         <goal>check</goal>
+       </goals>
+    </execution>
+  </executions>
+</plugin>
+
+<plugin>
+  <groupId>com.github.spotbugs</groupId>
+  <artifactId>spotbugs-maven-plugin</artifactId>
+  <version>3.1.12</version>
+  <dependencies>
+    <dependency>
+      <groupId>com.github.spotbugs</groupId>
+      <artifactId>spotbugs</artifactId>
+      <version>3.1.12</version>
+    </dependency>
+  </dependencies>
+  <configuration>
+    <effort>Default</effort>
+    <threshold>Default</threshold>
+    <failOnError>true</failOnError>
+    <trace>true</trace>
+    <xmlOutput>true</xmlOutput>
+  </configuration>
+  <executions>
+    <execution>
+      <id>spotbugs</id>
+      <phase>test</phase>
+      <goals>
+        <goal>check</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
+
       </plugins>
 
   </build>

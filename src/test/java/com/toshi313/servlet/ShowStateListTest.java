@@ -1,5 +1,9 @@
 package com.toshi313.servlet;
 
+import com.toshi313.dao.DbConnector;
+import com.toshi313.dao.DbConnectorForUt;
+import com.toshi313.dao.SelectMtState;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,27 +19,22 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import com.toshi313.dao.DBConnector;
-import com.toshi313.dao.DBConnectorForUT;
-import com.toshi313.dao.SelectMtState;
-
-
 public class ShowStateListTest {
 
-    @Mock(name="request")
-    private HttpServletRequest request_mock;
+    @Mock(name = "request")
+    private HttpServletRequest requestMock;
 
-    @Mock(name="response")
-    private HttpServletResponse response_mock;
+    @Mock(name = "response")
+    private HttpServletResponse responseMock;
 
     @Mock
-    private RequestDispatcher rd_mock;
+    private RequestDispatcher rdMock;
 
-    @Mock(name="db_conn")
-    private DBConnector db_conn_mock;
-
-    @Mock(name="select_mt_state")
-    private SelectMtState select_mt_state_mock;
+    //    @Mock(name = "dbConn")
+    //    private DbConnector dbConnMock;
+    //
+    //    @Mock(name = "selectMtState")
+    //    private SelectMtState selectMtStateMock;
 
     @InjectMocks
     private ShowStateList sut = new ShowStateList();
@@ -45,81 +44,109 @@ public class ShowStateListTest {
         MockitoAnnotations.initMocks(this);
     }
 
-
     @Test
-    public void DBConnectorのgetConnectionがnullの時はerrorメッセージをセットしfowardすることを確認する() throws Exception {
+    public void dbConnectorのgetConnectionがnullの時はerrorメッセージをセットしfowardすることを確認する() throws Exception {
 
         // SetUp
-        String expected_page = "/Error.jsp";
+        final String expectedPage = "/Error.jsp";
 
-        Mockito.when(this.db_conn_mock.getConnection(Mockito.any(com.toshi313.common.PropertyInfo.class))).thenReturn(null);
-        Mockito.when(this.select_mt_state_mock.select(Mockito.any(java.sql.Connection.class))).thenReturn(null);
-        Mockito.when(request_mock.getRequestDispatcher(Mockito.anyString())).thenReturn(rd_mock);
-        Mockito.doNothing().when(rd_mock).forward(request_mock, response_mock);
+        DbConnector dbConnStub = new DbConnector() {
+            @Override
+            public Connection getConnection(com.toshi313.common.PropertyInfo propInfo) {
+                return null;
+            }
+        };
+        ShowStateList.setDbConnector(dbConnStub);
+
+        Mockito.when(requestMock.getRequestDispatcher(Mockito.anyString())).thenReturn(rdMock);
+        Mockito.doNothing().when(rdMock).forward(requestMock, responseMock);
 
         // Exercise
-        this.sut.doPost(request_mock, response_mock);
+        this.sut.doPost(requestMock, responseMock);
 
         // Verify
-        Mockito.verify(request_mock, Mockito.times(1)).setAttribute("ERROR_MESSAGE", "DB接続に失敗しました。");
-        Mockito.verify(request_mock, Mockito.never()).setAttribute("mt_state_list", null);
-        Mockito.verify(request_mock, Mockito.times(1)).getRequestDispatcher(expected_page);
+        Mockito.verify(requestMock,
+                Mockito.times(1)).setAttribute("ERROR_MESSAGE", "DB接続に失敗しました。");
+        Mockito.verify(requestMock, Mockito.never()).setAttribute("mtStateList", null);
+        Mockito.verify(requestMock, Mockito.times(1)).getRequestDispatcher(expectedPage);
 
         // TearDown
-        ;
+        ShowStateList.setDbConnector(new DbConnector());
     }
 
-
     @Test
-    public void SelectMtStateのselect結果がnullの時はerrorメッセージをセットfowardすることを確認する() throws Exception {
+    public void selectMtStateのselect結果がnullの時はerrorメッセージをセットfowardすることを確認する() throws Exception {
 
         // SetUp
-        String expected_page = "/Error.jsp";
+        final String expectedPage = "/Error.jsp";
 
-        Connection conn = DBConnectorForUT.connect();
-        Mockito.when(this.db_conn_mock.getConnection(Mockito.any(com.toshi313.common.PropertyInfo.class))).thenReturn(conn);
-        Mockito.when(this.select_mt_state_mock.select(Mockito.any(java.sql.Connection.class))).thenReturn(null);
-        Mockito.when(request_mock.getRequestDispatcher(Mockito.anyString())).thenReturn(rd_mock);
-        Mockito.doNothing().when(rd_mock).forward(request_mock, response_mock);
+        SelectMtState selectMtStateMockStub = new SelectMtState() {
+            @Override
+            public ArrayList<HashMap<String, String>> select(Connection conn) {
+                return null;
+            }
+        };
+        ShowStateList.setSelectMtState(selectMtStateMockStub);
+
+        Mockito.when(requestMock.getRequestDispatcher(
+                Mockito.anyString())).thenReturn(rdMock);
+        Mockito.doNothing().when(rdMock).forward(requestMock, responseMock);
 
         // Exercise
-        this.sut.doPost(request_mock, response_mock);
+        this.sut.doPost(requestMock, responseMock);
 
         // Verify
-        Mockito.verify(request_mock, Mockito.times(1)).setAttribute("ERROR_MESSAGE", "都道府県マスタの取得に失敗しました。");
-        Mockito.verify(request_mock, Mockito.never()).setAttribute("mt_state_list", null);
-        Mockito.verify(request_mock, Mockito.times(1)).getRequestDispatcher(expected_page);
+        Mockito.verify(requestMock, Mockito.times(1)).setAttribute(
+                "ERROR_MESSAGE",
+                "都道府県マスタの取得に失敗しました。");
+        Mockito.verify(requestMock, Mockito.never()).setAttribute("mtState_list", null);
+        Mockito.verify(requestMock, Mockito.times(1)).getRequestDispatcher(expectedPage);
 
         // TearDown
-        ;
+        ShowStateList.setSelectMtState(new SelectMtState());
     }
 
-
-
     @Test
-    public void SelectMtStateのselect結果がnull以外の時はfowardすることを確認する() throws Exception {
+    public void selectMtStateのselect結果がnull以外の時はfowardすることを確認する() throws Exception {
 
         // SetUp
-        String expected_page = "/ShowStateList.jsp";
+        final String expectedPage = "/ShowStateList.jsp";
 
-        Connection conn = DBConnectorForUT.connect();
-        Mockito.when(this.db_conn_mock.getConnection(Mockito.any(com.toshi313.common.PropertyInfo.class))).thenReturn(conn);
+        Connection conn = DbConnectorForUt.connect();
+
+        DbConnector dbConnStub = new DbConnector() {
+
+            @Override
+            public Connection getConnection(com.toshi313.common.PropertyInfo propInfo) {
+                return conn;
+            }
+        };
+        ShowStateList.setDbConnector(dbConnStub);
 
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
-        Mockito.when(this.select_mt_state_mock.select(Mockito.any(java.sql.Connection.class))).thenReturn(list);
+        SelectMtState selectMtStateMockStub = new SelectMtState() {
 
-        Mockito.when(request_mock.getRequestDispatcher(Mockito.anyString())).thenReturn(rd_mock);
-        Mockito.doNothing().when(rd_mock).forward(request_mock, response_mock);
+            @Override
+            public ArrayList<HashMap<String, String>> select(Connection conn) {
+                return list;
+            }
+        };
+        ShowStateList.setSelectMtState(selectMtStateMockStub);
+
+        Mockito.when(requestMock.getRequestDispatcher(Mockito.anyString())).thenReturn(rdMock);
+        Mockito.doNothing().when(rdMock).forward(requestMock, responseMock);
 
         // Exercise
-        this.sut.doPost(request_mock, response_mock);
+        this.sut.doPost(requestMock, responseMock);
 
         // Verify
-        Mockito.verify(request_mock, Mockito.never()).setAttribute(Mockito.eq("ERROR_MESSAGE"), Mockito.anyString());
-        Mockito.verify(request_mock, Mockito.times(1)).setAttribute("mt_state_list", list);
-        Mockito.verify(request_mock, Mockito.times(1)).getRequestDispatcher(expected_page);
+        Mockito.verify(requestMock, Mockito.never()).setAttribute(
+                Mockito.eq("ERROR_MESSAGE"), Mockito.anyString());
+        Mockito.verify(requestMock, Mockito.times(1)).setAttribute("mtStateList", list);
+        Mockito.verify(requestMock, Mockito.times(1)).getRequestDispatcher(expectedPage);
 
         // TearDown
-        ;
+        ShowStateList.setDbConnector(new DbConnector());
+        ShowStateList.setSelectMtState(new SelectMtState());
     }
 }

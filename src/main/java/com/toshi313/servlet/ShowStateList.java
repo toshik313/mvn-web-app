@@ -1,5 +1,10 @@
 package com.toshi313.servlet;
 
+import com.toshi313.common.PropertyInfo;
+import com.toshi313.common.Util;
+import com.toshi313.dao.DbConnector;
+import com.toshi313.dao.SelectMtState;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -13,63 +18,75 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.toshi313.common.PropertyInfo;
-import com.toshi313.common.Util;
-import com.toshi313.dao.DBConnector;
-import com.toshi313.dao.SelectMtState;
-
-
 public class ShowStateList extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public Logger logger = LoggerFactory.getLogger(ShowStateList.class);
+    private static Logger logger = LoggerFactory.getLogger(ShowStateList.class);
 
-    private DBConnector db_conn;
-    private SelectMtState select_mt_state;
+    private static DbConnector dbConn = new DbConnector();
+    private static SelectMtState selectMtState = new SelectMtState();
 
-    public ShowStateList() {
-        this.db_conn = new DBConnector();
-        this.select_mt_state = new SelectMtState();
+    public static void setDbConnector(DbConnector dbConn) {
+        ShowStateList.dbConn = dbConn;
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public static void setSelectMtState(SelectMtState selectMtState) {
+        ShowStateList.selectMtState = selectMtState;
+    }
 
-        final String METHOD_OVERVIEW = "都道府県一覧取得Servlet";
-        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + ":" + METHOD_OVERVIEW + ":START");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-        ArrayList<HashMap<String, String>> mt_state_list = null;
+        final String Method_Overview = "都道府県一覧取得Servlet";
+        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()
+                + ":" + Method_Overview + ":START");
 
-        Connection conn = this.db_conn.getConnection(PropertyInfo.getInstance());
-        if(conn == null) {
+        ArrayList<HashMap<String, String>> mtStateList = null;
 
-            logger.error(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + ":" + METHOD_OVERVIEW + ":DBConnecter.connect() is null.");
+        Connection conn = dbConn.getConnection(PropertyInfo.getInstance());
+        if (conn == null) {
+
+            logger.error(Util.getClassName() + Util.CM_SEP + Util.getMethodName()
+                    + ":" + Method_Overview
+                    + ":DBConnecter.connect() is null.");
             request.setAttribute("ERROR_MESSAGE", "DB接続に失敗しました。");
             request.getRequestDispatcher("/Error.jsp").forward(request, response);
             return;
         } else {
 
-            logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + ":" + METHOD_OVERVIEW + ":DBConnecter.connect() is success.");
+            logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()
+                    + ":" + Method_Overview
+                    + ":DBConnecter.connect() is success.");
 
-            mt_state_list = this.select_mt_state.select(conn);
-            this.db_conn.close(conn);
+            mtStateList = selectMtState.select(conn);
+            dbConn.close(conn);
         }
 
-        if(mt_state_list == null) {
+        if (mtStateList == null) {
 
-            logger.error(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + ":" + METHOD_OVERVIEW + ":mt_state_list is null.");
+            logger.error(Util.getClassName() + Util.CM_SEP + Util.getMethodName()
+                    + ":" + Method_Overview
+                    + ":mt_state_list is null.");
             request.setAttribute("ERROR_MESSAGE", "都道府県マスタの取得に失敗しました。");
             request.getRequestDispatcher("/Error.jsp").forward(request, response);
             return;
         } else {
-            logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + ":" + METHOD_OVERVIEW + ":mt_state_list.size()=[" + mt_state_list.size() + "]");
+            logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()
+                    + ":" + Method_Overview
+                    + ":mtStateList.size()=[" + mtStateList.size() + "]");
         }
 
-        request.setAttribute("mt_state_list", mt_state_list);
-        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + ":" + METHOD_OVERVIEW + ":request.setAttribute(\"mt_state_list\", mt_state_list) done");
+        request.setAttribute("mtStateList", mtStateList);
+        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + ":" + Method_Overview
+                + ":request.setAttribute(\"mt_state_list\", mt_state_list) done");
 
         request.getRequestDispatcher("/ShowStateList.jsp").forward(request, response);
-        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + ":" + METHOD_OVERVIEW + ":request.getRequestDispatcher(\"/ShowStateList.jsp\").forward(request, response) done");
+        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()
+                + ":" + Method_Overview
+                + ":request.getRequestDispatcher(\"/ShowStateList.jsp\")"
+                + ".forward(request, response) done");
 
-        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + ":" + METHOD_OVERVIEW + ":END");
+        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()
+                + ":" + Method_Overview + ":END");
     }
 }

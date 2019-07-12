@@ -12,7 +12,6 @@ import org.junit.runner.RunWith;
 @RunWith(Theories.class)
 public class PropertyInfoTest {
 
-
     @Test
     public void getInstanceメソッドが正しいInstanceを返すこと() throws Exception {
 
@@ -28,7 +27,6 @@ public class PropertyInfoTest {
         // TearDown
         ;
     }
-
 
     @Theory
     public void getValueメソッドが正しい値を返すこと(Fixture p) throws Exception {

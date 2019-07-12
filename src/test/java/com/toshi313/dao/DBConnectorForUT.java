@@ -3,7 +3,7 @@ package com.toshi313.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class DBConnectorForUT {
+public class DbConnectorForUt {
 
     public static Connection connect() throws Exception {
 
@@ -16,7 +16,6 @@ public class DBConnectorForUT {
 
         return conn;
     }
-
 
     public static void close(Connection conn) throws Exception {
 

@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({UtilTest.class, PropertyInfoTest.class})
-public class CommonUTAllTests {
+@SuiteClasses({ UtilTest.class, PropertyInfoTest.class })
+public class CommonUtAllTests {
 
 }

@@ -1,14 +1,19 @@
 package com.toshi313.dao;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+//import static org.hamcrest.CoreMatchers.*;
+//import static org.junit.Assert.*;
+
+import com.toshi313.common.PropertyInfo;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
@@ -21,47 +26,38 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.slf4j.Logger;
 
-import com.toshi313.common.PropertyInfo;
-
 @RunWith(Enclosed.class)
-public class DBConnectorTest {
+public class DbConnectorTest {
 
     @RunWith(Theories.class)
-    public static class ConnectJNDIExceptionTest {
-
+    public static class ConnectJndiExceptionTest {
 
         @DataPoints
-        public static String NULL_PARAMS[] = {
-                "jndi_driver",
-                "jndi_datasource"
-        };
-
+        public static String[] NULL_PARAMS = { "jndi_driver", "jndi_datasource" };
 
         @Theory
         public void propertyファイルから取得したjndi設定値がNullの時はエラーログが出力されること(String param) throws Exception {
 
             // SetUp
-            final String expected = "jndi_driverまたはjndi_datasourceの取得に失敗しました。";
+            final String expected = "jndiDriverまたはjndiDatasourceの取得に失敗しました。";
 
             final ArrayList<String> actual_list = new ArrayList<String>();
 
-
-            DBConnector sut = new DBConnector();
+            DbConnector sut = new DbConnector();
 
             // PropertyInfoのstub作成（getValue(key)メソッドのkeyがparamの時nullを返す)
-            PropertyInfo prop_info_stub = new PropertyInfo() {
+            PropertyInfo propInfoStub = new PropertyInfo() {
 
                 @Override
                 public String getValue(String key) {
 
-                    if(key.equals(param)) {
+                    if (key.equals(param)) {
                         return null;
                     }
 
                     return super.getValue(key);
                 }
             };
-
 
             // LoggerのSpy作成（error(msg, e)メソッドのmsgをspyする）
             Logger spy = Mockito.spy(sut.logger);
@@ -73,21 +69,22 @@ public class DBConnectorTest {
                     actual_list.add(invocation.getArgument(0));
                     invocation.callRealMethod();
                     return null;
-                }}).when(spy).error(Mockito.anyString(), Mockito.any(Exception.class));
-
+                }
+            }).when(spy).error(Mockito.anyString(), Mockito.any(Exception.class));
 
             // テスト対象にloggerのspyを登録
             sut.logger = spy;
 
             // Exercise
             // テスト対象にPropertyInfoのstubを登録してgetConnection実行
-            Connection conn = sut.getConnection(prop_info_stub);
+            Connection conn = sut.getConnection(propInfoStub);
 
             // Verify
-            if(actual_list.size() == 0) {
-                fail("logger.error()は呼ばれませんでした。");
+            if (actual_list.size() == 0) {
+                Assert.fail("logger.error()は呼ばれませんでした。");
             } else {
-                assertThat(actual_list.get(actual_list.size()-1), containsString(expected));
+                Assert.assertThat(actual_list.get(actual_list.size() - 1),
+                        CoreMatchers.containsString(expected));
             }
 
             // TearDown
@@ -95,43 +92,35 @@ public class DBConnectorTest {
         }
     }
 
-
     @RunWith(Theories.class)
-    public static class ConnectJDBCExceptionTest {
+    public static class ConnectJdbcExceptionTest {
 
         @DataPoints
-        public static String NULL_PARAMS[] = {
-                "db_url",
-                "db_user",
-                "db_password"
-        };
-
+        public static String[] NULL_PARAMS = { "db_url", "db_user", "db_password" };
 
         @Theory
         public void propertyファイルから取得したjdbc設定値がNullの時はエラーログが出力されること(String param) throws Exception {
 
             // SetUp
-            final String expected = "db_urlまたはdb_userまたはdb_passwordの取得に失敗しました。";
+            final String expected = "dbUrlまたはdbUserまたはdbPasswordの取得に失敗しました。";
 
             final ArrayList<String> actual_list = new ArrayList<String>();
 
-
-            DBConnector sut = new DBConnector();
+            DbConnector sut = new DbConnector();
 
             // PropertyInfoのstub作成（getValue(key)メソッドのkeyがparamの時nullを返す)
-            PropertyInfo prop_info_stub = new PropertyInfo() {
+            PropertyInfo propInfoStub = new PropertyInfo() {
 
                 @Override
                 public String getValue(String key) {
 
-                    if(key.equals(param)) {
+                    if (key.equals(param)) {
                         return null;
                     }
 
                     return super.getValue(key);
                 }
             };
-
 
             // LoggerのSpy作成（error(msg, e)メソッドのmsgをspyする）
             Logger spy = Mockito.spy(sut.logger);
@@ -143,21 +132,22 @@ public class DBConnectorTest {
                     actual_list.add(invocation.getArgument(0));
                     invocation.callRealMethod();
                     return null;
-                }}).when(spy).error(Mockito.anyString(), Mockito.any(Exception.class));
-
+                }
+            }).when(spy).error(Mockito.anyString(), Mockito.any(Exception.class));
 
             // テスト対象にloggerのspyを登録
             sut.logger = spy;
 
             // Exercise
             // テスト対象にPropertyInfoのstubを登録してgetConnection実行
-            Connection conn = sut.getConnection(prop_info_stub);
+            Connection conn = sut.getConnection(propInfoStub);
 
             // Verify
-            if(actual_list.size() == 0) {
-                fail("logger.error()は呼ばれませんでした。");
+            if (actual_list.size() == 0) {
+                Assert.fail("logger.error()は呼ばれませんでした。");
             } else {
-                assertThat(actual_list.get(actual_list.size()-1), containsString(expected));
+                Assert.assertThat(actual_list.get(actual_list.size() - 1),
+                        CoreMatchers.containsString(expected));
             }
 
             // TearDown
@@ -165,10 +155,7 @@ public class DBConnectorTest {
         }
     }
 
-
-
     public static class CloseTest {
-
 
         @Test
         public void closeでconnがnullの時はerrorlogが出力されること() throws Exception {
@@ -178,7 +165,7 @@ public class DBConnectorTest {
             final ArrayList<String> actual_list = new ArrayList<String>();
 
             // LoggerのSpy作成（error(msg, e)メソッドのmsgをspyする
-            DBConnector sut = new DBConnector();
+            DbConnector sut = new DbConnector();
 
             Logger spy = Mockito.spy(sut.logger);
             Mockito.doAnswer(new Answer<Void>() {
@@ -189,30 +176,26 @@ public class DBConnectorTest {
                     actual_list.add(invocation.getArgument(0));
                     invocation.callRealMethod();
                     return null;
-                }}).when(spy).error(Mockito.anyString(), Mockito.any(Exception.class));
+                }
+            }).when(spy).error(Mockito.anyString(), Mockito.any(Exception.class));
 
             // テスト対象にloggerのspyを登録
             sut.logger = spy;
 
-
             // Exercise
             sut.close(null);
 
-
             // Verify
-            if(actual_list.size() == 0) {
-                fail("logger.error()は呼ばれませんでした。");
+            if (actual_list.size() == 0) {
+                Assert.fail("logger.error()は呼ばれませんでした。");
             } else {
-                assertThat(actual_list.get(actual_list.size()-1), containsString(expected));
+                Assert.assertThat(actual_list.get(actual_list.size() - 1),
+                        CoreMatchers.containsString(expected));
             }
 
             // TearDown
             ;
         }
-
-
-
-
 
         @Test
         public void closeが正常終了時はinfologが出力されること() throws Exception {
@@ -222,7 +205,7 @@ public class DBConnectorTest {
             final ArrayList<String> actual_list = new ArrayList<String>();
 
             // LoggerのSpy作成（error(msg, e)メソッドのmsgをspyする
-            DBConnector sut = new DBConnector();
+            DbConnector sut = new DbConnector();
             Connection conn = sut.getConnection(PropertyInfo.getInstance());
 
             Logger spy = Mockito.spy(sut.logger);
@@ -234,21 +217,20 @@ public class DBConnectorTest {
                     actual_list.add(invocation.getArgument(0));
                     invocation.callRealMethod();
                     return null;
-                }}).when(spy).info(Mockito.anyString());
+                }
+            }).when(spy).info(Mockito.anyString());
 
             // テスト対象にloggerのspyを登録
             sut.logger = spy;
 
-
             // Exercise
             sut.close(conn);
 
-
             // Verify
-            if(actual_list.size() == 0) {
-                fail("logger.error()は呼ばれませんでした。");
+            if (actual_list.size() == 0) {
+                Assert.fail("logger.error()は呼ばれませんでした。");
             } else {
-                assertThat(actual_list.get(1), containsString(expected));
+                Assert.assertThat(actual_list.get(1), CoreMatchers.containsString(expected));
             }
 
             // TearDown
@@ -256,109 +238,113 @@ public class DBConnectorTest {
         }
     }
 
-
-
     public static class CommitRollbackTest {
-
 
         @Before
         public void setUp() throws Exception {
 
-            DBConnector db_conn = new DBConnector();
-            Connection conn = db_conn.getConnection(PropertyInfo.getInstance());
+            DbConnector dbConn = new DbConnector();
+            Connection conn = dbConn.getConnection(PropertyInfo.getInstance());
 
-            Statement stmt = conn.createStatement();
-            stmt.execute("drop table if exists sc_mvn_web_app.tb_ut_temp");
-            stmt.execute("create table sc_mvn_web_app.tb_ut_temp (col1 varchar not null)");
-            stmt.close();
+            try (Statement stmt = conn.createStatement()) {
 
-            conn.commit();
-            db_conn.close(conn);
+                stmt.execute("drop table if exists sc_mvn_web_app.tb_ut_temp");
+                stmt.execute("create table sc_mvn_web_app.tb_ut_temp (col1 varchar not null)");
+                stmt.close();
+                conn.commit();
+            }
+
+            dbConn.close(conn);
         }
-
 
         @After
         public void tearDown() throws Exception {
 
-            DBConnector db_conn = new DBConnector();
-            Connection conn = db_conn.getConnection(PropertyInfo.getInstance());
+            DbConnector dbConn = new DbConnector();
+            Connection conn = dbConn.getConnection(PropertyInfo.getInstance());
 
-            Statement stmt = conn.createStatement();
-            stmt.execute("drop table if exists sc_mvn_web_app.tb_ut_temp");
-            stmt.close();
+            try (Statement stmt = conn.createStatement()) {
 
-            conn.commit();
-            db_conn.close(conn);
+                stmt.execute("drop table if exists sc_mvn_web_app.tb_ut_temp");
+                stmt.close();
+                conn.commit();
+            }
+            dbConn.close(conn);
         }
 
+        private void setTestData(Connection conn, String testData) throws Exception {
 
-        private void setTestData(Connection conn, String test_data) throws Exception {
+            String sql = "insert into sc_mvn_web_app.tb_ut_temp values(?)";
 
-            Statement stmt = conn.createStatement();
-            stmt.execute("insert into sc_mvn_web_app.tb_ut_temp values('" + test_data + "')");
-            stmt.close();
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+
+                ps.setString(1, testData);
+                ps.execute();
+                ps.close();
+            }
         }
-
 
         private String getTestData(Connection conn) throws Exception {
 
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select col1 from sc_mvn_web_app.tb_ut_temp");
+            String retData = null;
 
-            String ret_data = null;
-            if(rs.next()) {
-                ret_data = rs.getString("col1");
+            try (Statement stmt = conn.createStatement()) {
+
+                ResultSet rs = stmt.executeQuery("select col1 from sc_mvn_web_app.tb_ut_temp");
+                if (rs.next()) {
+                    retData = rs.getString("col1");
+                }
+                stmt.close();
             }
-            stmt.close();
 
-            return ret_data;
+            return retData;
         }
-
 
         @Test
         public void connectがDB接続後insertのrollbackができること() throws Exception {
 
             // SetUp
-            String test_data = "this is test record and rollback test";
-            String expected = null;
+            final String testData = "this is test record and rollback test";
 
+            DbConnector sut = new DbConnector();
+            Connection conn1 = sut.getConnection(PropertyInfo.getInstance());
 
-            DBConnector sut = new DBConnector();
-            Connection conn = sut.getConnection(PropertyInfo.getInstance());
-            this.setTestData(conn, test_data);
-            String test_check_value = getTestData(conn);
-            if(!test_check_value.equals(test_data)) {
-                throw new Exception("このテストで登録したテストデータの値が不正です。登録したテストデータ=[" + test_check_value + "], 取得したテストデータ=[" + test_data + "]");
+            this.setTestData(conn1, testData);
+            String testCheckValue = getTestData(conn1);
+            if (!testCheckValue.equals(testData)) {
+                throw new Exception("このテストで登録したテストデータの値が不正です。"
+                        + "登録したテストデータ=[" + testCheckValue + "],"
+                        + " 取得したテストデータ=[" + testData + "]");
             }
-            conn.rollback();
-            sut.close(conn);
-
+            conn1.rollback();
+            sut.close(conn1);
 
             // Exercise
-            conn = sut.getConnection(PropertyInfo.getInstance());
-            String actual = getTestData(conn);
+            Connection conn2 = sut.getConnection(PropertyInfo.getInstance());
+            String actual = getTestData(conn2);
 
             // Verify
-            assertThat(actual, is(expected));
+            Assert.assertThat(actual, CoreMatchers.nullValue());
 
             // TearDown
-            sut.close(conn);
+            sut.close(conn2);
         }
-
 
         @Test
         public void connectがDB接続後insertのcommitができること() throws Exception {
 
             // SetUp
-            String test_data = "this is test record and commit test";
-            String expected = test_data;
+            final String testData = "this is test record and commit test";
+            final String expected = testData;
 
-            DBConnector sut = new DBConnector();
+            DbConnector sut = new DbConnector();
             Connection conn = sut.getConnection(PropertyInfo.getInstance());
-            this.setTestData(conn, test_data);
-            String test_check_value = getTestData(conn);
-            if(!test_check_value.equals(test_data)) {
-                throw new Exception("このテストで登録したテストデータの値が不正です。登録したテストデータ=[" + test_check_value + "], 取得したテストデータ=[" + test_data + "]");
+            this.setTestData(conn, testData);
+            String testCheckValue = getTestData(conn);
+            if (!testCheckValue.equals(testData)) {
+                throw new Exception("このテストで登録したテストデータの値が不正です。"
+                        + "登録したテストデータ=[" + testCheckValue + "],"
+                        + " 取得したテストデータ=[" + testData + "]");
             }
             conn.commit();
             sut.close(conn);
@@ -368,7 +354,7 @@ public class DBConnectorTest {
             String actual = getTestData(conn);
 
             // Verify
-            assertThat(actual, is(expected));
+            Assert.assertThat(actual, CoreMatchers.is(expected));
 
             // TearDown
             sut.close(conn);

@@ -2,15 +2,14 @@
 
 <span class="nc" id="L3">public class Util {</span>
 
-
     public static final String CM_SEP = &quot;#&quot;;
 
     public static String getClassName() {
-<span class="fc" id="L9">        return Thread.currentThread().getStackTrace()[2].getClassName();</span>
+<span class="fc" id="L8">        return Thread.currentThread().getStackTrace()[2].getClassName();</span>
     }
 
     public static String getMethodName() {
-<span class="fc" id="L13">        return Thread.currentThread().getStackTrace()[2].getMethodName() + &quot;()&quot;;</span>
+<span class="fc" id="L12">        return Thread.currentThread().getStackTrace()[2].getMethodName() + &quot;()&quot;;</span>
     }
 
 }

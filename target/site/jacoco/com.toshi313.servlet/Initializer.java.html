@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Initializer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mvn-web-app Maven Webapp</a> &gt; <a href="index.source.html" class="el_package">com.toshi313.servlet</a> &gt; <span class="el_source">Initializer.java</span></div><h1>Initializer.java</h1><pre class="source lang-java linenums">package com.toshi313.servlet;
 
+import com.toshi313.common.Util;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.toshi313.common.Util;
 
 <span class="nc" id="L11">public class Initializer implements ServletContextListener {</span>
 
@@ -14,18 +14,22 @@ import com.toshi313.common.Util;
 
     public void contextInitialized(ServletContextEvent event) {
         //Tomcat起動時処理
-<span class="nc" id="L17">        final String METHOD_OVERVIEW = &quot;Tomcat起動時処理&quot;;</span>
-<span class="nc" id="L18">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;:START&quot;);</span>
+<span class="nc" id="L17">        final String Method_Overview = &quot;Tomcat起動時処理&quot;;</span>
+<span class="nc" id="L18">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
+                + &quot;:&quot; + Method_Overview + &quot;:START&quot;);
 
-<span class="nc" id="L20">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;:END&quot;);</span>
-<span class="nc" id="L21">    }</span>
+<span class="nc" id="L21">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
+                + &quot;:&quot; + Method_Overview + &quot;:END&quot;);
+<span class="nc" id="L23">    }</span>
 
     public void contextDestroyed(ServletContextEvent event) {
         //Tomcatシャットダウン時処理
-<span class="nc" id="L25">        final String METHOD_OVERVIEW = &quot;Tomcatシャットダウン時処理&quot;;</span>
-<span class="nc" id="L26">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;:START&quot;);</span>
+<span class="nc" id="L27">        final String Method_Overview = &quot;Tomcatシャットダウン時処理&quot;;</span>
+<span class="nc" id="L28">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
+                + &quot;:&quot; + Method_Overview + &quot;:START&quot;);
 
-<span class="nc" id="L28">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + METHOD_OVERVIEW + &quot;:END&quot;);</span>
-<span class="nc" id="L29">    }</span>
+<span class="nc" id="L31">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
+                + &quot;:&quot; + Method_Overview + &quot;:END&quot;);
+<span class="nc" id="L33">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

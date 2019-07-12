@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ShowStateListTest.class})
-public class ServletUTAllTests {
+@SuiteClasses({ ShowStateListTest.class })
+public class ServletUtAllTests {
 
 }

@@ -1,13 +1,12 @@
 package com.toshi313.dao;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
@@ -16,16 +15,13 @@ import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
-
 @RunWith(Enclosed.class)
 public class SelectMtStateTest {
 
-
     public static class SelectMtStateExceptionTest {
 
-
         @Test
-        public void MtStateが空の時は正常終了し0行のarraylistが返ることを確認する() throws Exception {
+        public void mtStateが空の時は正常終了し0行のarraylistが返ることを確認する() throws Exception {
 
             // SetUp
 
@@ -35,12 +31,11 @@ public class SelectMtStateTest {
 
             // TearDown
 
-            assertThat("何をすべきか分かったため省略", is("何をすべきか分かったため省略"));
+            Assert.assertThat("何をすべきか分かったため省略", CoreMatchers.is("何をすべきか分かったため省略"));
         }
 
-
         @Test
-        public void MtStateのconn引数がnullの時は例外が発生しnullが返ることを確認する() throws Exception {
+        public void mtStateのconn引数がnullの時は例外が発生しnullが返ることを確認する() throws Exception {
 
             // SetUp
 
@@ -50,52 +45,51 @@ public class SelectMtStateTest {
 
             // TearDown
 
-            assertThat("何をすべきか分かったため省略", is("何をすべきか分かったため省略"));
+            Assert.assertThat("何をすべきか分かったため省略", CoreMatchers.is("何をすべきか分かったため省略"));
         }
     }
-
-
 
     @RunWith(Theories.class)
     public static class SelectMtState初期レコード確認Test {
 
-        public static Connection conn = null;
+        private static Connection conn = null;
 
         @BeforeClass
         public static void setUpClass() throws Exception {
-            conn = DBConnectorForUT.connect();
+            conn = DbConnectorForUt.connect();
         }
 
         @AfterClass
         public static void tearDownClass() throws Exception {
-            DBConnectorForUT.close(conn);
+            DbConnectorForUt.close(conn);
         }
-
 
         @Theory
         public void select結果の各レコードの都道府県コートと都道府県名の値が正しいこと(Fixture p) throws Exception {
 
             // SetUp
-            SelectMtState select_mt_state = new SelectMtState();
+            SelectMtState selectMtState = new SelectMtState();
 
             // Exercise
-            ArrayList<HashMap<String, String>> list = select_mt_state.select(conn);
+            ArrayList<HashMap<String, String>> list = selectMtState.select(conn);
 
-            HashMap<String, String> actual_map = list.get(p.list_index);
-            String actual_code = actual_map.get(SelectMtState.COL_NAMES[SelectMtState.COL_INDEX_STATE_CODE]);
-            String actual_name = actual_map.get(SelectMtState.COL_NAMES[SelectMtState.COL_INDEX_STATE_NAME]);
+            HashMap<String, String> actualMap = list.get(p.listIndex);
+            String actualCode = actualMap.get(SelectMtState.getColNames(
+                    SelectMtState.COL_INDEX_STATE_CODE));
+            String actualName = actualMap.get(SelectMtState.getColNames(
+                    SelectMtState.COL_INDEX_STATE_NAME));
 
             // Verify
-            String message = "list_index=[" + p.list_index + "], state_code=[" + p.state_code + "], state_name=[" + p.state_name + "]";
+            String message = "listIndex=[" + p.listIndex + "],"
+                    + " stateCode=[" + p.stateCode + "],"
+                    + " stateName=[" + p.stateName + "]";
 
-            assertThat(message, actual_code, is(p.state_code));
-            assertThat(message, actual_name, is(p.state_name));
-
+            Assert.assertThat(message, actualCode, CoreMatchers.is(p.stateCode));
+            Assert.assertThat(message, actualName, CoreMatchers.is(p.stateName));
 
             // TearDown
             ;
         }
-
 
         @DataPoints
         public static Fixture[] PARAMS = {
@@ -150,18 +144,16 @@ public class SelectMtStateTest {
 
         static class Fixture {
 
-            int list_index;
-            String state_code;
-            String state_name;
+            int listIndex;
+            String stateCode;
+            String stateName;
 
-            Fixture(int list_index, String state_code, String state_name) {
-                this.list_index = list_index;
-                this.state_code = state_code;
-                this.state_name = state_name;
+            Fixture(int listIndex, String stateCode, String stateName) {
+                this.listIndex = listIndex;
+                this.stateCode = stateCode;
+                this.stateName = stateName;
             }
         }
     }
-
-
 
 }

@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({DBConnectorTest.class, SelectMtStateTest.class})
-public class DaoUTAllTests {
+@SuiteClasses({ DbConnectorTest.class, SelectMtStateTest.class })
+public class DaoUtAllTests {
 
 }

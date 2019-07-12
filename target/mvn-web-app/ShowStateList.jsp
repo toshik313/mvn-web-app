@@ -9,13 +9,13 @@
 <%@page import="java.util.ArrayList" %>
 <%@page import="com.toshi313.dao.SelectMtState" %>
 <%
-    ArrayList<HashMap<String, String>> mt_state_list = (ArrayList<HashMap<String, String>>)request.getAttribute("mt_state_list");
+    ArrayList<HashMap<String, String>> mtStateList = (ArrayList<HashMap<String, String>>)request.getAttribute("mtStateList");
 %>
 </head>
 <body>
 <h1>都道府県一覧画面</h1>
 
-<%  if(mt_state_list == null) { %>
+<%  if(mtStateList == null) { %>
   <p>都道府県一覧は登録されていません。</p>
 <%  } else { %>
   <table>
@@ -24,11 +24,11 @@
       <th>都道府県名</th>
       <th>更新日時</th>
     </tr>
-<%      for(int i = 0 ; i < mt_state_list.size() ; i ++) {
-            HashMap<String, String> map = mt_state_list.get(i);
-            String state_code = map.get(SelectMtState.COL_NAMES[SelectMtState.COL_INDEX_STATE_CODE]);
-            String state_name = map.get(SelectMtState.COL_NAMES[SelectMtState.COL_INDEX_STATE_NAME]);
-            String update_datetime = map.get(SelectMtState.COL_NAMES[SelectMtState.COL_INDEX_UPDATE_DATETIME]);
+<%      for(int i = 0 ; i < mtStateList.size() ; i ++) {
+            HashMap<String, String> map = mtStateList.get(i);
+            String state_code = map.get(SelectMtState.getColNames(SelectMtState.COL_INDEX_STATE_CODE));
+            String state_name = map.get(SelectMtState.getColNames(SelectMtState.COL_INDEX_STATE_NAME));
+            String update_datetime = map.get(SelectMtState.getColNames(SelectMtState.COL_INDEX_UPDATE_DATETIME));
 %>
     <tr>
       <td><%= state_code %></td>

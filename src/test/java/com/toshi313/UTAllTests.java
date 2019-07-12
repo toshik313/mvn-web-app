@@ -6,10 +6,10 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-    com.toshi313.common.CommonUTAllTests.class,
-    com.toshi313.dao.DaoUTAllTests.class,
-    com.toshi313.servlet.ServletUTAllTests.class
-    })
-public class UTAllTests {
+        com.toshi313.common.CommonUtAllTests.class,
+        com.toshi313.dao.DaoUtAllTests.class,
+        com.toshi313.servlet.ServletUtAllTests.class
+})
+public class UtAllTests {
 
 }
