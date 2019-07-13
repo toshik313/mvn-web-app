@@ -34,7 +34,7 @@ public class PropertyInfo {
 
 <span class="fc" id="L35">            logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
 <span class="fc" id="L36">                    + &quot;:[&quot; + bundle.getBaseBundleName() + &quot;]から、&quot;</span>
-<span class="fc" id="L37">                    + &quot;key=[&quot; + key + &quot;], value=[&quot; + value + &quot;]を取得しました。&quot;);</span>
+                    + &quot;key=[&quot; + key + &quot;], value=[&quot; + value + &quot;]を取得しました。&quot;);
 <span class="fc" id="L38">        });</span>
 
 <span class="fc" id="L40">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:END&quot;);</span>
@@ -44,19 +44,19 @@ public class PropertyInfo {
 
 <span class="fc" id="L45">        final String Method_Overview = &quot;インスタンス生成処理&quot;;</span>
 <span class="fc" id="L46">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
-<span class="fc" id="L47">                + &quot;:&quot; + Method_Overview + &quot;:START&quot;);</span>
+                + &quot;:&quot; + Method_Overview + &quot;:START&quot;);
 
 <span class="fc bfc" id="L49" title="All 2 branches covered.">        if (PROP_DEF == null) {</span>
 <span class="fc" id="L50">            PROP_DEF = new PropertyInfo();</span>
 <span class="fc" id="L51">            logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
-<span class="fc" id="L52">                    + &quot;:&quot; + Method_Overview + &quot;:PROP_DEFのinstanceを生成しました。&quot;);</span>
-<span class="fc" id="L53">        } else {</span>
+                    + &quot;:&quot; + Method_Overview + &quot;:PROP_DEFのinstanceを生成しました。&quot;);
+        } else {
 <span class="fc" id="L54">            logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
-<span class="fc" id="L55">                    + &quot;:&quot; + Method_Overview + &quot;:PROP_DEFのinstanceは生成済みです。&quot;);</span>
+                    + &quot;:&quot; + Method_Overview + &quot;:PROP_DEFのinstanceは生成済みです。&quot;);
         }
 
 <span class="fc" id="L58">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
-<span class="fc" id="L59">                + &quot;:&quot; + Method_Overview + &quot;:END&quot;);</span>
+                + &quot;:&quot; + Method_Overview + &quot;:END&quot;);
 
 <span class="fc" id="L61">        return PROP_DEF;</span>
     }
@@ -65,21 +65,21 @@ public class PropertyInfo {
 
 <span class="fc" id="L66">        final String Method_Overview = &quot;値返却処理&quot;;</span>
 <span class="fc" id="L67">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
-<span class="fc" id="L68">                + &quot;:&quot; + Method_Overview + &quot;:START&quot;);</span>
+                + &quot;:&quot; + Method_Overview + &quot;:START&quot;);
 
 <span class="fc" id="L70">        String value = &quot;&quot;;</span>
 
 <span class="pc bpc" id="L72" title="1 of 2 branches missed.">        if (PROP_MAP.containsKey(key)) {</span>
 <span class="fc" id="L73">            value = PROP_MAP.get(key);</span>
 <span class="fc" id="L74">            logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot;</span>
-<span class="fc" id="L75">                    + Method_Overview + &quot;:key=[&quot; + key + &quot;], value=[&quot; + value + &quot;]&quot;);</span>
-<span class="fc" id="L76">        } else {</span>
+                    + Method_Overview + &quot;:key=[&quot; + key + &quot;], value=[&quot; + value + &quot;]&quot;);
+        } else {
 <span class="nc" id="L77">            logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
-<span class="nc" id="L78">                    + &quot;:&quot; + Method_Overview + &quot;:mvn-web-appに[&quot; + key + &quot;]は存在しません。&quot;);</span>
+                    + &quot;:&quot; + Method_Overview + &quot;:mvn-web-appに[&quot; + key + &quot;]は存在しません。&quot;);
         }
 
 <span class="fc" id="L81">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
-<span class="fc" id="L82">                + &quot;:&quot; + Method_Overview + &quot;:END&quot;);</span>
+                + &quot;:&quot; + Method_Overview + &quot;:END&quot;);
 <span class="fc" id="L83">        return value;</span>
     }
 }

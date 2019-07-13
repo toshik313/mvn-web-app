@@ -1,8 +1,5 @@
 package com.toshi313.dao;
 
-//import static org.hamcrest.CoreMatchers.*;
-//import static org.junit.Assert.*;
-
 import com.toshi313.common.PropertyInfo;
 
 import java.sql.Connection;

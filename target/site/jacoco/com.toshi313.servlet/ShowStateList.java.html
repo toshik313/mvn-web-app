@@ -39,7 +39,7 @@ import org.slf4j.LoggerFactory;
 
 <span class="fc" id="L40">        final String Method_Overview = &quot;都道府県一覧取得Servlet&quot;;</span>
 <span class="fc" id="L41">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
-<span class="fc" id="L42">                + &quot;:&quot; + Method_Overview + &quot;:START&quot;);</span>
+                + &quot;:&quot; + Method_Overview + &quot;:START&quot;);
 
 <span class="fc" id="L44">        ArrayList&lt;HashMap&lt;String, String&gt;&gt; mtStateList = null;</span>
 
@@ -47,16 +47,16 @@ import org.slf4j.LoggerFactory;
 <span class="fc bfc" id="L47" title="All 2 branches covered.">        if (conn == null) {</span>
 
 <span class="fc" id="L49">            logger.error(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
-<span class="fc" id="L50">                    + &quot;:&quot; + Method_Overview</span>
-<span class="fc" id="L51">                    + &quot;:DBConnecter.connect() is null.&quot;);</span>
+                    + &quot;:&quot; + Method_Overview
+                    + &quot;:DBConnecter.connect() is null.&quot;);
 <span class="fc" id="L52">            request.setAttribute(&quot;ERROR_MESSAGE&quot;, &quot;DB接続に失敗しました。&quot;);</span>
 <span class="fc" id="L53">            request.getRequestDispatcher(&quot;/Error.jsp&quot;).forward(request, response);</span>
 <span class="fc" id="L54">            return;</span>
         } else {
 
 <span class="fc" id="L57">            logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
-<span class="fc" id="L58">                    + &quot;:&quot; + Method_Overview</span>
-<span class="fc" id="L59">                    + &quot;:DBConnecter.connect() is success.&quot;);</span>
+                    + &quot;:&quot; + Method_Overview
+                    + &quot;:DBConnecter.connect() is success.&quot;);
 
 <span class="fc" id="L61">            mtStateList = selectMtState.select(conn);</span>
 <span class="fc" id="L62">            dbConn.close(conn);</span>
@@ -65,29 +65,29 @@ import org.slf4j.LoggerFactory;
 <span class="fc bfc" id="L65" title="All 2 branches covered.">        if (mtStateList == null) {</span>
 
 <span class="fc" id="L67">            logger.error(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
-<span class="fc" id="L68">                    + &quot;:&quot; + Method_Overview</span>
-<span class="fc" id="L69">                    + &quot;:mt_state_list is null.&quot;);</span>
+                    + &quot;:&quot; + Method_Overview
+                    + &quot;:mt_state_list is null.&quot;);
 <span class="fc" id="L70">            request.setAttribute(&quot;ERROR_MESSAGE&quot;, &quot;都道府県マスタの取得に失敗しました。&quot;);</span>
 <span class="fc" id="L71">            request.getRequestDispatcher(&quot;/Error.jsp&quot;).forward(request, response);</span>
 <span class="fc" id="L72">            return;</span>
         } else {
 <span class="fc" id="L74">            logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
-<span class="fc" id="L75">                    + &quot;:&quot; + Method_Overview</span>
+                    + &quot;:&quot; + Method_Overview
 <span class="fc" id="L76">                    + &quot;:mtStateList.size()=[&quot; + mtStateList.size() + &quot;]&quot;);</span>
         }
 
 <span class="fc" id="L79">        request.setAttribute(&quot;mtStateList&quot;, mtStateList);</span>
 <span class="fc" id="L80">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName() + &quot;:&quot; + Method_Overview</span>
-<span class="fc" id="L81">                + &quot;:request.setAttribute(\&quot;mt_state_list\&quot;, mt_state_list) done&quot;);</span>
+                + &quot;:request.setAttribute(\&quot;mt_state_list\&quot;, mt_state_list) done&quot;);
 
 <span class="fc" id="L83">        request.getRequestDispatcher(&quot;/ShowStateList.jsp&quot;).forward(request, response);</span>
 <span class="fc" id="L84">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
-<span class="fc" id="L85">                + &quot;:&quot; + Method_Overview</span>
-<span class="fc" id="L86">                + &quot;:request.getRequestDispatcher(\&quot;/ShowStateList.jsp\&quot;)&quot;</span>
-<span class="fc" id="L87">                + &quot;.forward(request, response) done&quot;);</span>
+                + &quot;:&quot; + Method_Overview
+                + &quot;:request.getRequestDispatcher(\&quot;/ShowStateList.jsp\&quot;)&quot;
+                + &quot;.forward(request, response) done&quot;);
 
 <span class="fc" id="L89">        logger.info(Util.getClassName() + Util.CM_SEP + Util.getMethodName()</span>
-<span class="fc" id="L90">                + &quot;:&quot; + Method_Overview + &quot;:END&quot;);</span>
+                + &quot;:&quot; + Method_Overview + &quot;:END&quot;);
 <span class="fc" id="L91">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
