@@ -192,10 +192,12 @@
                 <directory>${resources.path}</directory>
                 <targetPath>WEB-INF/classes</targetPath>
                 <filtering>true</filtering>
+<!--
                 <includes>
                   <include>logback.xml</include>
-                  <include>mvn-web-app*.xml</include>
+                  <include>mvn-web-app*.properties</include>
                 </includes>
+-->
               </resource>
               <resource>
                 <directory>${contextxml.path}</directory>
@@ -216,6 +218,7 @@
           <executions>
             <execution>
               <id>integration-test</id>
+              <phase>integration-test</phase>
               <goals>
                 <goal>integration-test</goal>
               </goals>
@@ -227,15 +230,9 @@
                   <chrome_driver_path>${project.basedir}/src/test/resources/webdriver/chromedriver.exe</chrome_driver_path>
                   <phantomjs_binary_path>${project.basedir}/src/test/resources/webdriver/phantomjs.exe</phantomjs_binary_path>
                   <url>http://localhost:${jetty.port}/mvn-web-app</url>
-                  <snapshop_save_path>${project.basedir}/src/test/evidence</snapshop_save_path>
+                  <snapshop_save_path>${project.basedir}/target/integration-test/evidence</snapshop_save_path>
                 </systemPropertyVariables>
               </configuration>
-            </execution>
-            <execution>
-              <id>verify</id>
-              <goals>
-                <goal>verify</goal>
-              </goals>
             </execution>
           </executions>
         </plugin>
@@ -397,9 +394,6 @@
   <profiles>
       <profile>
           <id>local</id>
-          <activation>
-            <activeByDefault>true</activeByDefault>
-          </activation>
           <properties>
             <contextxml.path>src/main/webapp/META-INF</contextxml.path>
             <resources.path>src/main/resources</resources.path>
@@ -407,6 +401,9 @@
       </profile>
       <profile>
           <id>integration</id>
+          <activation>
+            <activeByDefault>true</activeByDefault>
+          </activation>
           <properties>
             <contextxml.path>src/integration/META-INF</contextxml.path>
             <resources.path>src/integration/resources</resources.path>

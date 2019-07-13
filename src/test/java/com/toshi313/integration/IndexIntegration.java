@@ -29,7 +29,7 @@ public class IndexIntegration {
 
         // maven-failsafe-pluginに記載している値を取得
 
-        this.snapshopSavePath = System.getProperty("snapshopSavePath");
+        this.snapshopSavePath = System.getProperty("snapshop_save_path");
         this.urlRoot = System.getProperty("url");
 
         //        String chrome_driver_path = System.getProperty("chrome_driver_path");
